@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageBus } from 'src/struct';
 
 @Component({
   selector: 'app-root',
@@ -6,24 +7,54 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  color: string;
+
+
+
 
   ngOnInit(): void {
-    chrome.storage.sync.get('color', ({ color }) => {
-      this.color = color;
-    });
+    // chrome.storage.sync.get('color', ({ color }) => {
+    //   this.color = color;
+    // });
   }
 
-  public updateColor(color: string) {
-    chrome.storage.sync.set({ color });
+  submit() {
+    // if (!this.isAnyFieldEmpty()) {
+    //   this.processOtl();
+    // }
   }
 
-  public colorize() {
+  processOtl() {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-      chrome.tabs.executeScript(
-        tabs[0].id,
-        { code: 'document.body.style.backgroundColor = "' + this.color + '";' }
-      );
+      chrome.tabs.sendMessage(tabs[0].id, {
+        id: 'otl',
+        data: {}
+      } as MessageBus<{ user: string; password: string }>);
     });
   }
+
+  isEmpty(val: string) {
+    return val && val.trim().length === 0;
+  }
+
+  // isAnyFieldEmpty() {
+  //   return (
+  //     this.isEmpty(this.otlId) ||
+  //     this.isEmpty(this.otlPassword) ||
+  //     this.isEmpty(this.hrisId) ||
+  //     this.isEmpty(this.hp)
+  //   );
+  // }
+
+  // public updateColor(color: string) {
+  //   chrome.storage.sync.set({ color });
+  // }
+
+  // public colorize() {
+  //   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+  //     chrome.tabs.executeScript(
+  //       tabs[0].id,
+  //       { code: 'document.body.style.backgroundColor = "' + this.color + '";' }
+  //     );
+  //   });
+  // }
 }

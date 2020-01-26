@@ -1,10 +1,10 @@
-<span [style.color]="color" 
-[cpToggle]="true" 
-[cpDialogDisplay]="'inline'" 
-[cpPositionRelativeToArrow]="true"
-[(colorPicker)]="color" 
-[cpOKButtonText]="'Apply'" 
-[cpOKButton]="true"
-(colorPickerChange)="updateColor($event)"
-(colorPickerSelect)="colorize()">
-</span>
+<div>
+  <tabset>
+    <tab heading="Credentials">
+      <app-cred></app-cred>
+    </tab>
+    <tab heading="Timecard">
+      <app-cred></app-cred>
+    </tab>
+  </tabset>
+</div>

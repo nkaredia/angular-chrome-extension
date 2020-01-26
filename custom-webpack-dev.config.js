@@ -1,14 +1,22 @@
 
-const ExtensionReloader = require('webpack-extension-reloader')
-const config = require('./custom-webpack.config');
+
+const ExtensionReloader = require("webpack-extension-reloader");
+const config = require("./custom-webpack.config");
 
 module.exports = {
-    ...config,
-    mode: 'development',
-    plugins: [new ExtensionReloader({
-        reloadPage: true,
-        entries: {
-            background: 'background'
-        }
-    })]
-}
+  ...config,
+  mode: "development",
+  plugins: [
+    new ExtensionReloader({
+      reloadPage: true,
+      entries: {
+        background: "background",
+        content: "content",
+        otl: "otl"
+      }
+    })
+  ],
+  // optimization: {
+  //   runtimeChunk: false
+  // }
+};

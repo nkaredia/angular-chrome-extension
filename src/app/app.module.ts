@@ -1,18 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 import { AppComponent } from './app.component';
-import { ColorPickerModule} from 'ngx-color-picker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CredComponent } from './cred/cred.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, CredComponent],
   imports: [
     BrowserModule,
-    ColorPickerModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TabsModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [CredComponent]
 })
-export class AppModule { }
+export class AppModule {}
