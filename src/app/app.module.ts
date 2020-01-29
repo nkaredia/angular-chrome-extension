@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ColorPickerModule} from 'ngx-color-picker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { ColorPickerModule} from 'ngx-color-picker';
   ],
   imports: [
     BrowserModule,
-    ColorPickerModule
+    ColorPickerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
